@@ -1,1 +1,4 @@
 IMG_SUFFIX="-lite"
+if ${USE_QEMU} = "true"; then
+  IMG_SUFFIX="-qemu"
+fi

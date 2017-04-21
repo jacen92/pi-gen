@@ -1,3 +1,4 @@
-wpasupplicant wireless-tools firmware-atheros firmware-brcm80211 firmware-libertas firmware-ralink firmware-realtek
+wpasupplicant wireless-tools firmware-brcm80211
+firmware-atheros firmware-libertas firmware-ralink firmware-realtek
 raspberrypi-net-mods
 dhcpcd5

@@ -1,27 +1,30 @@
 # pi-gen
-_Tool used to create the raspberrypi.org Raspbian images_
+_Tool used to create the raspberrypi.org Raspbian images but in a minimal version only_
 
-### TODO
-1. Documentation
+This tool was forked to be able to build a custom image ahead of a minimal official raspbian image.
+All raspberrypi packages (update-config, raspi-config, python-gpio) are available in images.
+Rigth now it takes 690MB in sd card and 35MB in RAM (tested on rpi3), bluetooth and wifi are enabled.
+A Qemu mode is in the pipe, it modify the final image to be used with Qemu but not with a real rpi (not stable), in this case the image have the suffixe -qemu.img
 
 ## Dependencies
+
+I recommand to build with docker (you will be able to build from windows or mac) else you have to install these packages:
 
 `quilt parted realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin grep rsync`
 
 ## Config
 
 Upon execution, `build.sh` will source the file `config` in the current
-working directory.  This bash shell fragment is intended to set needed
-environment variables.
+working directory or a file specified with `CONFIG_FILE`.  This bash shell fragment is intended to set needed
+environment variables. In order to create your own config just copy the config file (use as a template).
 
 The following environment variables are supported:
 
- * `IMG_NAME` **required** (Default: unset)
+ * `CONFIG_FILE` (Default: config)
 
-   The name of the image to build with the current stage directories.  Setting
-   `IMG_NAME=Raspbian` is logical for an unmodified RPi-Distro/pi-gen build,
-   but you should use something else for a customized version.  Export files
-   in stages may add suffixes to `IMG_NAME`.
+   The path to a file which export custom env var for the build script. You can customize these var and have an multiple config files
+   In the next release it will be possible to enable some function as QEMU version of your image or other things like this.
+   ** Do not remove any export ** There are no default values set in the build script.
 
  * `APT_PROXY` (Default: unset)
 
@@ -32,14 +35,13 @@ The following environment variables are supported:
 A simple example for building Raspbian:
 
 ```bash
-IMG_NAME='Raspbian'
+CONFIG_FILE='my_conf' ./build.sh
 ```
 
 ## Docker Build
 
 ```bash
-vi config         # Edit your config file. See above.
-./build-docker.sh
+CONFIG_FILE='my_conf' ./build-docker.sh
 ```
 If everything goes well, your finished image will be in the `deploy/` folder.
 You can then remove the build container with `docker rm pigen_work`
@@ -47,8 +49,8 @@ You can then remove the build container with `docker rm pigen_work`
 If something breaks along the line, you can edit the corresponding scripts, and
 continue:
 
-```
-CONTINUE=1 ./build-docker.sh
+```bash
+CONTINUE=1 CONFIG_FILE='my_conf' ./build-docker.sh
 ```
 
 There is a possibility that even when running from a docker container, the installation of `qemu-user-static` will silently fail when building the image because `binfmt-support` _must be enabled on the underlying kernel_. An easy fix is to ensure `binfmt-support` is installed on the host machine before starting the `./build-docker.sh` script (or using your own docker build solution).
@@ -85,33 +87,6 @@ maintenance and allows for more easy customization.
    creates necessary groups and gives the pi user access to sudo and the
    standard console hardware permission groups.
 
-   There are a few tools that may not make a whole lot of sense here for
-   development purposes on a minimal system such as basic python and lua
-   packages as well as the `build-essential` package.  They are lumped right
-   in with more essential packages presently, though they need not be with
-   pi-gen.  These are understandable for Raspbian's target audience, but if
-   you were looking for something between truly minimal and Raspbian-lite,
-   here's where you start trimming.
-
- - **Stage 3** - desktop system.  Here's where you get the full desktop system
-   with X11 and LXDE, web browsers, git for development, Raspbian custom UI
-   enhancements, etc.  This is a base desktop system, with some development
-   tools installed.
-
- - **Stage 4** - complete Raspbian system.  More development tools, an email
-   client, learning tools like Scratch, specialized packages like sonic-pi and
-   wolfram-engine, system documentation, office productivity, etc.  This is
-   the stage that installs all of the things that make Raspbian friendly to
-   new users.
 
 ### Stage specification
-If you wish to build up to a specified stage (such as building up to stage 2 for a lite system), place an empty file named `SKIP` in each of the `./stage` directories you wish not to include.
-
-Then remove the `EXPORT*` files from `./stage4` (if building up to stage 2) or from `./stage2` (if building a minimal system).
-
-```
-# Example for building a lite system
-$ touch ./stage3/SKIP ./stage4/SKIP
-$ rm stage4/EXPORT*
-```
-If you wish to build further configurations upon (for example) the lite system, you can also delete the contents of `./stage3` and `./stage4` and replace with your own contents in the same format.
+You can add other stages, I recommand you to see the original project for more informations.

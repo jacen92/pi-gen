@@ -1,0 +1,4 @@
+export IMG_NAME="Raspbian"
+export RPI_USER="pi"
+export RPI_PASS="raspberry"
+export USE_QEMU="false"

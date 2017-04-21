@@ -12,10 +12,12 @@ if ! $DOCKER ps >/dev/null; then
 fi
 set -e
 
+export BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export CONFIG_FILE=${CONFIG_FILE:-"${BASE_DIR}/config"}
 config_mount=
 if [ -f config ]; then
-	config_mount="-v $(pwd)/config:/pi-gen/config:ro"
-	source config
+	config_mount="-v $(pwd)/config:/pi-gen/${CONFIG_FILE}:ro"
+	source ${CONFIG_FILE}
 fi
 
 CONTAINER_NAME=${CONTAINER_NAME:-pigen_work}

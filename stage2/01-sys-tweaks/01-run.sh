@@ -15,10 +15,19 @@ on_chroot << EOF
 systemctl disable hwclock.sh
 systemctl disable nfs-common
 systemctl disable rpcbind
-systemctl disable ssh
 systemctl enable regenerate_ssh_host_keys
 systemctl enable apply_noobs_os_config
 EOF
+
+if ${USE_SSH} = "true"; then
+	on_chroot << EOF
+systemctl enable ssh
+EOF
+else
+	on_chroot << EOF
+systemctl disable ssh
+EOF
+fi
 
 if ${USE_QEMU} = "true"; then
 	echo "enter QEMU mode"

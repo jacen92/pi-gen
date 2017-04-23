@@ -63,7 +63,7 @@ if [ "$CONTAINER_EXISTS" != "" ]; then
 	wait
 else
 	trap "echo 'got CTRL+C... please wait 5s'; docker stop -t 5 ${CONTAINER_NAME}" SIGINT SIGTERM
-	$DOCKER run --name "${CONTAINER_NAME}" --privileged \
+	time $DOCKER run --name "${CONTAINER_NAME}" --privileged \
 		-v $(pwd)/deploy:/pi-gen/deploy \
 		${config_mount} \
 		pi-gen \

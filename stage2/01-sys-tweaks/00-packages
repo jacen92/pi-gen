@@ -1,4 +1,4 @@
-ssh locales less fbset sudo psmisc strace module-init-tools ed ncdu crda
+ssh locales less fbset sudo psmisc strace module-init-tools ed ncdu
 console-setup keyboard-configuration debconf-utils parted unzip
 bash-completion v4l-utils htop
 avahi-daemon
@@ -11,4 +11,4 @@ apt-listchanges
 usb-modeswitch
 apt-transport-https
 libpam-chksshpwd
-pi-bluetooth
+pulseaudio

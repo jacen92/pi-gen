@@ -1,4 +1,5 @@
-wpasupplicant wireless-tools firmware-brcm80211
+wpasupplicant wireless-tools firmware-brcm80211 iw crda
 firmware-atheros firmware-libertas firmware-ralink firmware-realtek
 raspberrypi-net-mods
 dhcpcd5
+pi-bluetooth bluez pulseaudio-module-bluetooth

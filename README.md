@@ -4,7 +4,8 @@ _Tool used to create the raspberrypi.org Raspbian images but in a minimal versio
 This tool was forked to be able to build a custom image ahead of a minimal official raspbian image.
 All raspberrypi packages (update-config, raspi-config, python-gpio) are available in images.
 Rigth now it takes 690MB in sd card and 35MB in RAM (tested on rpi3), bluetooth and wifi are enabled.
-A Qemu mode is in the pipe, it modify the final image to be used with Qemu but not with a real rpi (not stable), in this case the image have the suffixe -qemu.img
+The QEMU mode modify the final image to be used with Qemu but not with a real rpi, in this case the image have the suffixe -qemu.img
+and can be used with the custom kernel from `https://github.com/dhruvvyas90/qemu-rpi-kernel` (tested with kernel-qemu-4.4.34-jessie)
 
 ## Dependencies
 

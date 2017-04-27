@@ -2,7 +2,6 @@
 Basic images
 ============
 - remove swap functions
-- stabilize qemu mode (enter in emergency mode)
 - iptable (allow output, forbid input except ssh)
 - custom usefull aliases in /etc/profile (ll=ls -hal, etc)
 

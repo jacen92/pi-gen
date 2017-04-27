@@ -47,13 +47,13 @@ fi
 if [ "$CONTAINER_EXISTS" != "" ] && [ "$CONTINUE" != "1" ]; then
 	echo "Container $CONTAINER_NAME already exists and you did not specify CONTINUE=1. Aborting."
 	echo "You can delete the existing container like this:"
-	echo "  docker rm $CONTAINER_NAME"
+	echo "  docker rm -v $CONTAINER_NAME"
 	exit 1
 fi
 
 $DOCKER build -t pi-gen .
 if [ "$CONTAINER_EXISTS" != "" ]; then
-	trap "echo 'got CTRL+C... please wait 5s';docker stop -t 5 ${CONTAINER_NAME}_cont" SIGINT SIGTERM
+	trap "echo 'got CTRL+C... please wait 5s';$DOCKER stop -t 5 ${CONTAINER_NAME}_cont" SIGINT SIGTERM
 	time $DOCKER run --rm --privileged \
 		--volumes-from="${CONTAINER_NAME}" --name "${CONTAINER_NAME}_cont" \
 		pi-gen \
@@ -62,7 +62,7 @@ if [ "$CONTAINER_EXISTS" != "" ]; then
 	rsync -av work/*/build.log deploy/" &
 	wait
 else
-	trap "echo 'got CTRL+C... please wait 5s'; docker stop -t 5 ${CONTAINER_NAME}" SIGINT SIGTERM
+	trap "echo 'got CTRL+C... please wait 5s';$DOCKER stop -t 5 ${CONTAINER_NAME}" SIGINT SIGTERM
 	time $DOCKER run --name "${CONTAINER_NAME}" --privileged \
 		-v $(pwd)/deploy:/pi-gen/deploy \
 		${config_mount} \
@@ -73,3 +73,10 @@ else
 	wait
 fi
 echo "Done! Your image(s) should be in deploy/"
+$DOCKER rm -v ${CONTAINER_NAME}
+
+# remove all remaaining artifacts (next build will take more time)
+# http://stackoverflow.com/questions/17665283/how-does-one-remove-an-image-in-docker
+# $DOCKER rm $(DOCKER ps -a -q)
+# $DOCKER rmi $(DOCKER images -q)
+# $DOCKER volume rm $(DOCKER volume ls -f dangling=true -q)

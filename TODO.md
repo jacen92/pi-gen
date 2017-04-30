@@ -1,9 +1,9 @@
 
 Basic images
 ============
-- remove swap functions
-- iptable (allow output, forbid input except ssh)
+- (remove swap functions)
 - custom usefull aliases in /etc/profile (ll=ls -hal, etc)
+- iptable (allow output, forbid input except ssh)
 
 Core images
 ===========

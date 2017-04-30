@@ -75,8 +75,8 @@ fi
 echo "Done! Your image(s) should be in deploy/"
 $DOCKER rm -v ${CONTAINER_NAME}
 
-# remove all remaaining artifacts (next build will take more time)
+# remove all remaaining artifacts (next build will take few more time)
 # http://stackoverflow.com/questions/17665283/how-does-one-remove-an-image-in-docker
-# $DOCKER rm $(DOCKER ps -a -q)
-# $DOCKER rmi $(DOCKER images -q)
-# $DOCKER volume rm $(DOCKER volume ls -f dangling=true -q)
+# $DOCKER rm $($DOCKER ps -a -q)
+# $DOCKER rmi $($DOCKER images -q)
+# $DOCKER volume rm $($DOCKER volume ls -f dangling=true -q)

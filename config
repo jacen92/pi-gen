@@ -1,6 +1,8 @@
 export IMG_NAME="Raspbian"
+export HOSTNAME="raspberrypi"
 export RPI_USER="pi"
 export RPI_PASS="raspberry"
+export ROOT_PASS="root"
 export USE_QEMU="false"
 export USE_SSH="false"
 export KEYBOARD_CONF="fr"

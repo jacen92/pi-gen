@@ -7,3 +7,6 @@ install -m 644 files/hostname ${ROOTFS_DIR}/etc/hostname
 on_chroot << EOF
 dpkg-divert --add --local /lib/udev/rules.d/75-persistent-net-generator.rules
 EOF
+
+echo "${HOSTNAME}" > ${ROOTFS_DIR}/etc/hostname
+echo "127.0.1.1 ${HOSTNAME}" >> ${ROOTFS_DIR}/etc/hosts

@@ -10,5 +10,5 @@ if ! id -u ${RPI_USER} >/dev/null 2>&1; then
 	adduser --disabled-password --gecos "" ${RPI_USER}
 fi
 echo "${RPI_USER}:${RPI_PASS}" | chpasswd
-echo "root:root" | chpasswd
+echo "root:${ROOT_PASS}" | chpasswd
 EOF

@@ -3,7 +3,7 @@ _Tool used to create the raspberrypi.org Raspbian images but in a minimal versio
 
 This tool was forked to be able to build a custom image ahead of a minimal official raspbian image.
 All raspberrypi packages (update-config, raspi-config, python-gpio) are available in images.
-Rigth now it takes 690MB in sd card and 35MB in RAM (tested on rpi3), bluetooth and wifi are enabled.
+Rigth now it takes 770MB in sd card and 35MB in RAM (tested on rpi3), bluetooth and wifi are enabled.
 The QEMU mode modify the final image to be used with Qemu but not with a real rpi, in this case the image have the suffixe -qemu.img
 and can be used with the custom kernel from `https://github.com/dhruvvyas90/qemu-rpi-kernel` (tested with kernel-qemu-4.4.34-jessie)
 
@@ -19,7 +19,7 @@ Upon execution, `build.sh` will source the file `config` in the current
 working directory or a file specified with `CONFIG_FILE`.  This bash shell fragment is intended to set needed
 environment variables. In order to create your own config just copy the config file (use as a template).
 
-The following environment variables are supported:
+The following environment variables for build.sh or buid-docker.sh are supported:
 
  * `CONFIG_FILE` (Default: config)
 
@@ -38,6 +38,46 @@ A simple example for building Raspbian:
 ```bash
 CONFIG_FILE='my_conf' ./build.sh
 ```
+
+## Config file parameters
+
+The config file set some Parameters used by all build scripts.
+
+  * `IMG_NAME` (Default: <string> "Raspbian")
+
+  The name of your image.
+
+  * `HOSTNAME` (Default: <string> "raspberrypi")
+
+  The hostname name of the rpi.
+
+  * `RPI_USER` (Default: <string> "pi")
+
+  The name of the standard user.
+
+  * `RPI_PASS` (Default: <string> "raspberry")
+
+  The standard user password.
+
+  * `ROOT_PASS` (Default: <string> "root")
+
+  The root user password.
+
+  * `USE_QEMU` (Default: <boolean> false)
+
+  This enable the Qemu mode and set filesystem and image suffix.
+
+  * `USE_SSH` (Default: <boolean> false)
+
+  This start the ssh server at startup (ssh is always installed).
+
+  * `KEYBOARD_CONF` (Default: <string> "fr")
+
+  Set the keyboard layout (azerty by default).
+
+  * `LOCALE_CONF` (Default: <string> "fr_FR.UTF-8")
+
+  Set the locales files to be used and select the default one.
 
 ## Docker Build
 

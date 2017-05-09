@@ -71,6 +71,10 @@ The config file set some Parameters used by all build scripts.
 
   This start the ssh server at startup (ssh is always installed).
 
+  * `INSTALL_NODEJS` (Default: <boolean> false)
+
+  Install nodejs V4.x for arm and npm.
+
   * `KEYBOARD_CONF` (Default: <string> "fr")
 
   Set the keyboard layout (azerty by default).

@@ -10,3 +10,4 @@ Core images
 - nodejs, npm, bower
 - git, subversion, tig
 - jade-core (remember to open port in iptable) (omxplayer and hdmi-cec from node-modules)
+- (playstation emulator)

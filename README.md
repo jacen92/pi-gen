@@ -73,7 +73,7 @@ The config file set some Parameters used by all build scripts.
 
   * `INSTALL_NODEJS` (Default: <boolean> false)
 
-  Install nodejs V4.x for arm and npm.
+  Install nodejs V4.x and npm for arm (arm6l if USE_QEMU == true else arm7l).
 
   * `KEYBOARD_CONF` (Default: <string> "fr")
 

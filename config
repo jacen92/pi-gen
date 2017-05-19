@@ -1,10 +1,30 @@
+# Default builder configuration file
+#===================================================
+# Image base name (will not be the final image name)
 export IMG_NAME="Raspbian"
+
+# Machine hostname
 export HOSTNAME="raspberrypi"
+
+# Standard user name and password
 export RPI_USER="pi"
 export RPI_PASS="raspberry"
+
+# Default root password
 export ROOT_PASS="root"
+
+# Create an qemu compatible image
 export USE_QEMU="false"
+
+# Start ssh server on boot
 export USE_SSH="false"
+
+# Keyboard configuration
 export KEYBOARD_CONF="fr"
 export LOCALE_CONF="fr_FR.UTF-8"
+
+# Available free space in the final image (in megabytes). Usefull if qemu mode is enabled
+export FREE_SPACE_MB=400
+
+# Install nodejs V4.0 and npm
 export INSTALL_NODEJS="false"

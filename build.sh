@@ -131,6 +131,7 @@ export IMG_NAME
 export APT_PROXY
 
 export CONFIG_FILE=${CONFIG_FILE:-"${BASE_DIR}/config"}
+export FREE_SPACE_MB=400
 if [ -f ${CONFIG_FILE} ]; then
 	source ${CONFIG_FILE}
 fi

@@ -84,6 +84,11 @@ The config file set some Parameters used by all build scripts.
 
   Set the locales files to be used and select the default one.
 
+  * `FREE_SPACE_MB` (Default: <int> 400)
+
+  Add a free space in the partition (value in megabyte). If Qemu image is generated it could be usefull to have a lot of free space.
+
+
 ## Docker Build
 
 ```bash

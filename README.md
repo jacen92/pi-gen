@@ -72,6 +72,11 @@ The config file set some Parameters used by all build scripts.
 
   This start the ssh server at startup (ssh is always installed).
 
+  * `USE_IPTABLE` (Default: <boolean> false)
+
+  This start the firewall at startup (iptable is always installed).  
+  This forbid all connections except for dns, ping, ntp, apt-get, rpi-update and ssh if enabled.
+
   * `INSTALL_NODEJS` (Default: <boolean> false)
 
   Install nodejs V4.x and npm for arm (arm6l if USE_QEMU == true else arm7l).

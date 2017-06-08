@@ -16,6 +16,9 @@ export ROOT_PASS="root"
 # Create an qemu compatible image
 export USE_QEMU="false"
 
+# Add strict iptable rules
+export USE_IPTABLE="false"
+
 # Start ssh server on boot
 export USE_SSH="false"
 

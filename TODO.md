@@ -7,7 +7,6 @@ Basic images
   * https://debian-facile.org/doc:reseau:ssh:tp-sftp-via-openssh-server
 - temperature monitoring:
   * https://www.google.fr/search?client=ubuntu&channel=fs&q=temperature+rpi&ie=utf-8&oe=utf-8&gfe_rd=cr&ei=P2tNWbz9OrPA8gea_KDACg
-- native camera and opencv support (python and C++):
-  * camera driver
-  * camera streaming
-  * opencv lib
+- wireless deactivation
+- desktop version
+- latest debian version

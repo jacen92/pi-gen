@@ -3,10 +3,10 @@ _Tool used to create the raspberrypi.org Raspbian images but in a minimal versio
 
 This tool was forked to be able to build a custom image ahead of a minimal official raspbian image.  
 All raspberrypi packages (update-config, raspi-config, python-gpio) are available in images.  
-Rigth now it takes 770MB in sd card and 35MB in RAM (tested on rpi3), bluetooth and wifi are enabled.  
-The QEMU mode modify the final image to be used with Qemu but not with a real rpi, in this case the image have the suffixe -qemu.img
-and can be used with the custom kernel from `https://github.com/dhruvvyas90/qemu-rpi-kernel` (tested with kernel-qemu-4.4.34-jessie).
-If INSTALL_NODEJS is set then nodejs V4.0 will be install with npm.
+Right now it takes 770MB in SD card and 35MB in RAM (tested on rpi3), bluetooth and wifi are enabled.  
+The QEMU mode modify the final image to be used with Qemu but not with a real rpi, in that case the image have the suffixe -qemu.img
+and can be used with the custom kernel from `https://github.com/dhruvvyas90/qemu-rpi-kernel` (tested with kernel-qemu-4.4.34-jessie).  
+If INSTALL_NODEJS is set then nodejs V4.0 will be installed with npm.
 
 ## Dependencies
 
@@ -31,7 +31,7 @@ The following environment variables for build.sh or buid-docker.sh are supported
  * `APT_PROXY` (Default: unset)
 
    If you require the use of an apt proxy, set it here.  This proxy setting
-   will not be included in the image, making it safe to use an `apt-cacher` or
+   will not be included in the image, making it safe to use an `apt-cache` or
    similar package for development.
 
 A simple example for building Raspbian:

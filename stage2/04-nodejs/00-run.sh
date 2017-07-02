@@ -14,7 +14,7 @@ if ${INSTALL_NODEJS} = "true"; then
   cp -R node-${NODE_VERSION}-linux-${NODE_ARCH}/* ${ROOTFS_DIR}/usr/local/
   rm -rf node-${NODE_VERSION}-linux-${NODE_ARCH}*
   on_chroot << EOF
-apt-get install -y git make
+apt-get install -y git make g++
 ln -s /usr/local/bin/node /usr/bin/nodejs
 ln -s /usr/local/bin/node /usr/bin/node
 EOF

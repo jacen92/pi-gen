@@ -88,6 +88,10 @@ The following environment variables are supported:
 
    root user default password.
 
+ * `KEYBOARD_LANG` (Default: `"gb"`)
+
+   Change the keyboard default mapping (gb=qwerty, fr=azerty).
+
 
 A simple example for building Raspbian:
 

@@ -92,6 +92,16 @@ The following environment variables are supported:
 
    Change the keyboard default mapping (gb=qwerty, fr=azerty).
 
+ * `USE_SSH` (Default: `"0"`)
+
+   For security SSH server is disabled by default so if you want to activate it set this to `"1"`.
+
+ * `USE_IPTABLE` (Default: `"0"`)
+
+   This start the firewall at startup (iptable is always installed).  
+   This forbid all connections except for dns, ping, ntp, apt-get and rpi-update.  
+   You can set all rules in the file `"set_iptables_rules.sh"` from `"/usr/bin/"` which is launch at statup to set iptables.
+
 
 A simple example for building Raspbian:
 

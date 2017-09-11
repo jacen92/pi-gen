@@ -15,7 +15,6 @@ on_chroot << EOF
 systemctl disable hwclock.sh
 systemctl disable nfs-common
 systemctl disable rpcbind
-systemctl disable ssh
 systemctl enable regenerate_ssh_host_keys
 EOF
 
@@ -37,6 +36,16 @@ EOF
 else
 	on_chroot << EOF
 systemctl enable resize2fs_once
+EOF
+fi
+
+if [ "${USE_SSH}" = "1" ]; then
+	on_chroot << EOF
+systemctl enable ssh
+EOF
+else
+	on_chroot << EOF
+systemctl disable ssh
 EOF
 fi
 

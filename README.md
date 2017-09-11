@@ -72,6 +72,22 @@ The following environment variables are supported:
 
    This enable the Qemu mode and set filesystem and image suffix if set to 1.
 
+ * `RPI_LOCALHOST` (Default: `"raspberrypi"`)
+
+   Your image hostname.
+
+ * `RPI_USERNAME` (Default: `"pi"`)
+
+   Default non priviledged user name.
+
+ * `RPI_USERPASS` (Default: `"raspberry"`)
+
+   Default user password.
+
+ * `RPI_ROOTPASS` (Default: `"root"`)
+
+   root user default password.
+
 
 A simple example for building Raspbian:
 

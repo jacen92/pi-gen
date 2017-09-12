@@ -102,6 +102,10 @@ The following environment variables are supported:
    This forbid all connections except for dns, ping, ntp, apt-get and rpi-update.  
    You can set all rules in the file `"set_iptables_rules.sh"` from `"/usr/bin/"` which is launch at statup to set iptables.
 
+ * `INSTALL_NODEJS` (Default: `"0"`)
+
+ Install nodejs V4.x and npm for arm (arm6l if USE_QEMU == 1 else arm7l).
+
 
 A simple example for building Raspbian:
 

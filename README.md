@@ -71,6 +71,10 @@ The following environment variables are supported:
  * `USE_QEMU` (Default: `"0"`)
 
    This enable the Qemu mode and set filesystem and image suffix if set to 1.
+   
+ * `LAST_STAGE` (Default: `"5"`)
+
+   If you wish to build up to a specified stage (such as building up to stage 2 for a lite system)
 
  * `RPI_LOCALHOST` (Default: `"raspberrypi"`)
 
@@ -195,21 +199,5 @@ maintenance and allows for more easy customization.
 
 ### Stage specification
 
-If you wish to build up to a specified stage (such as building up to stage 2
-for a lite system), place an empty file named `SKIP` in each of the `./stage`
-directories you wish not to include.
-
-Then remove the `EXPORT*` files from `./stage4` (if building up to stage 2) or
-from `./stage2` (if building a minimal system).
-
-```bash
-# Example for building a lite system
-echo "IMG_NAME='Raspbian'" > config
-touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP
-rm stage4/EXPORT* stage5/EXPORT*
-sudo ./build.sh  # or ./build-docker.sh
-```
-
-If you wish to build further configurations upon (for example) the lite
-system, you can also delete the contents of `./stage3` and `./stage4` and
-replace with your own contents in the same format.
+If you wish to skip some steps you can add an empty file `SKIP` in the directory.  
+It works in `./stage*` or in `./stage*/**-whatever`.

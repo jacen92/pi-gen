@@ -175,10 +175,10 @@ source ${SCRIPT_DIR}/dependencies_check
 mkdir -p ${WORK_DIR}
 
 # LAST_STAGE validation
-if [[ "${LAST_STAGE,,}" =~ ^(2|4|5)$ ]]; then
+if [[ "${LAST_STAGE,,}" =~ ^(2|3|4|5)$ ]]; then
 	log "Valid LAST_STAGE: $LAST_STAGE"
 else
-	log "ERROR INVALID LAST_STAGE: $LAST_STAGE, try 2, 4 or 5"
+	log "ERROR INVALID LAST_STAGE: $LAST_STAGE, try 2, 3, 4 or 5"
 	exit 2
 fi
 

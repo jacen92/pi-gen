@@ -61,7 +61,7 @@ The following environment variables are supported:
    be built and cached.  Note, `WORK_DIR` stores a complete copy of the target
    system for each build stage, amounting to tens of gigabytes in the case of
    Raspbian.
-   
+
    **CAUTION**: If your working directory is on an NTFS partition you probably won't be able to build. Make sure this is a proper Linux filesystem.
 
  * `DEPLOY_DIR`  (Default: `"$BASE_DIR/deploy"`)
@@ -71,7 +71,7 @@ The following environment variables are supported:
  * `USE_QEMU` (Default: `"0"`)
 
    This enable the Qemu mode and set filesystem and image suffix if set to 1.
-   
+
  * `LAST_STAGE` (Default: `"5"`)
 
    If you wish to build up to a specified stage (such as building up to stage 2 for a lite system)
@@ -109,6 +109,10 @@ The following environment variables are supported:
  * `INSTALL_NODEJS` (Default: `"0"`)
 
  Install nodejs V4.x and npm for arm (arm6l if USE_QEMU == 1 else arm7l).
+
+ * `INSTALL_DOCKER` (Default: `"0"`)
+
+ Install docker and dockr-compose.
 
 
 A simple example for building Raspbian:

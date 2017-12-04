@@ -110,6 +110,10 @@ The following environment variables are supported:
 
  Install nodejs V4.x and npm for arm (arm6l if USE_QEMU == 1 else arm7l).
 
+ * `INSTALL_DOCKER` (Default: `"0"`)
+
+ Install docker and dockr-compose.
+
  * `FREE_SPACE_MB` (Default: <int> 400)
  Add a free space in the partition (value in megabyte). If Qemu image is generated it could be usefull to have a lot of free space.
 

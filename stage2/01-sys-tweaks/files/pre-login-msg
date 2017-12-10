@@ -1,0 +1,30 @@
+#!/bin/sh
+# Save this file in /etc/network/if-up.d/ and chmod +x
+# from: https://forums.fedoraforum.org/showthread.php?311815-Display-IP-adress-before-login
+if [ "$METHOD" = loopback ]; then
+    exit 0
+fi
+
+# Only run from ifup.
+if [ "$MODE" != start ]; then
+    exit 0
+fi
+
+# First time, back up /etc/issue
+if [ ! -f /etc/issue.orig ]
+then
+  cp /etc/issue /etc/issue.orig
+fi
+
+# "Reset" /etc/issue to original state
+cp /etc/issue.orig /etc/issue
+
+# Append IP address to /etc/issue
+echo $(date) >/etc/issue
+echo "\S" >>/etc/issue
+echo "Kernel $(uname -r) on an \m" >> /etc/issue
+echo "   " >> /etc/issue
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP" >> /etc/issue
+fi

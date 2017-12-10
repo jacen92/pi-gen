@@ -1,7 +1,16 @@
 # pi-gen
 
-_Tool used to create the raspberrypi.org Raspbian images_
+_Tool used to create the raspberrypi.org Raspbian images but with more customizable functions_
 
+
+### Purpose
+
+This project is based on the official raspbian image but allow you to customize the build configuration.  
+You can use it to create a minimal server image with docker and/or nodejs installed.  
+You can select the keyboard layout (usefull for bored french guys like me ;) ).  
+Customizable rules for the firewall are availables and ssh can be disabled.  
+A minimal rpi desktop version is also possible (without heavy python stuff).  
+You also can customize the pre-login message.
 
 ## Dependencies
 
@@ -70,11 +79,12 @@ The following environment variables are supported:
 
  * `USE_QEMU` (Default: `"0"`)
 
-   This enable the Qemu mode and set filesystem and image suffix if set to 1.
+   This enable the Qemu mode and set filesystem and image suffix if set to 1.  
+   **CAUTION**: In this mode and following the version of Qemu the system could be on armv6l instead of armv7l on the real device.
 
  * `LAST_STAGE` (Default: `"5"`)
 
-   If you wish to build up to a specified stage (such as building up to stage 2 for a lite system)
+   If you wish to build up to a specified stage (such as building up to stage 2 for a lite system or stage 3 for a minimal desktop image)
 
  * `RPI_LOCALHOST` (Default: `"raspberrypi"`)
 
@@ -94,25 +104,26 @@ The following environment variables are supported:
 
  * `KEYBOARD_LANG` (Default: `"gb"`)
 
-   Change the keyboard default mapping (gb=qwerty, fr=azerty).
+   Change the keyboard default mapping (`"gb"`=qwerty, `"fr"`=azerty).
 
  * `USE_SSH` (Default: `"0"`)
 
-   For security SSH server is disabled by default so if you want to activate it set this to `"1"`.
+   For security SSH server is disabled by default so if you want to activate it set this to `"1"`.  
+   If you want to add an authorized_keys file to the root user you can put it in `"stage2/01-sys-tweaks/files/authorized_keys"`, it will be added to the root .ssh directory.
 
  * `USE_IPTABLE` (Default: `"0"`)
 
    This start the firewall at startup (iptable is always installed).  
-   This forbid all connections except for dns, ping, ntp, apt-get and rpi-update.  
-   You can set all rules in the file `"set_iptables_rules.sh"` from `"/usr/bin/"` which is launch at statup to set iptables.
+   This forbid all input and output connections except for dns, ping, ntp, apt-get and rpi-update.  
+   You can set all rules in the file `"/usr/bin/set_iptables_rules.sh"` which is launch at statup to set iptables.
 
  * `INSTALL_NODEJS` (Default: `"0"`)
 
- Install nodejs V4.x and npm for arm (arm6l if USE_QEMU == 1 else arm7l).
+ Install nodejs V4.x and npm for arm (armv6l if USE_QEMU == 1 else armv7l).
 
  * `INSTALL_DOCKER` (Default: `"0"`)
 
- Install docker and dockr-compose.
+ Install docker and docker-compose. Usefull to setup containerized web service like wordpress, jenkins, gogs or portainer.
 
  * `FREE_SPACE_MB` (Default: <int> 400)
  Add a free space in the partition (value in megabyte). If Qemu image is generated it could be usefull to have a lot of free space.

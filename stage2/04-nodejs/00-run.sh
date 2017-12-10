@@ -8,7 +8,7 @@ if [ "${INSTALL_NODEJS}" = "1" ]; then
   if [ "${USE_QEMU}" = "1" ]; then
     NODE_ARCH=armv6l
   fi
-  echo "Install nodejs ${NODE_VERSION} and npm for ${NODE_ARCH}"
+  log "Install nodejs ${NODE_VERSION} and npm for ${NODE_ARCH}"
   wget https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-${NODE_ARCH}.tar.gz
   tar -xvf node-${NODE_VERSION}-linux-${NODE_ARCH}.tar.gz
   cp -R node-${NODE_VERSION}-linux-${NODE_ARCH}/* ${ROOTFS_DIR}/usr/local/

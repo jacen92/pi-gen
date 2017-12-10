@@ -10,6 +10,7 @@ install -m 644 files/50raspi				${ROOTFS_DIR}/etc/apt/apt.conf.d/
 install -m 644 files/console-setup   			${ROOTFS_DIR}/etc/default/
 
 install -m 755 files/rc.local				${ROOTFS_DIR}/etc/
+install -m 755 files/pre-login-msg  ${ROOTFS_DIR}/etc/network/if-up.d/
 
 on_chroot << EOF
 systemctl disable hwclock.sh
@@ -19,7 +20,7 @@ systemctl enable regenerate_ssh_host_keys
 EOF
 
 if [ "${USE_QEMU}" = "1" ]; then
-	echo "enter QEMU mode"
+	log "enable QEMU mode"
 	install -m 644 files/90-qemu.rules		${ROOTFS_DIR}/etc/udev/rules.d/
 	if [ -e ${ROOTFS_DIR}/etc/ld.so.preload.disabled ]; then
 		rm ${ROOTFS_DIR}/etc/ld.so.preload.disabled
@@ -32,7 +33,6 @@ if [ "${USE_QEMU}" = "1" ]; then
 	on_chroot << EOF
 systemctl disable resize2fs_once
 EOF
-	echo "leaving QEMU mode"
 else
 	on_chroot << EOF
 systemctl enable resize2fs_once
@@ -47,6 +47,12 @@ else
 	on_chroot << EOF
 systemctl disable ssh
 EOF
+fi
+
+if [[ -e files/authorized_keys ]]; then
+	log "Copy authorized_keys in root ssh directory"
+	install -d                            ${ROOTFS_DIR}/root/.ssh
+	install -m 644 files/authorized_keys 	${ROOTFS_DIR}/root/.ssh/
 fi
 
 on_chroot << \EOF

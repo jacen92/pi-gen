@@ -2,7 +2,7 @@
 
 if [ "${USE_IPTABLE}" = "1" ]; then
   # NOTE: install basic rules and enable iptables
-  echo "Configure firewall"
+  log "Configure firewall"
   install -m 755 files/configure_iptables       ${ROOTFS_DIR}/etc/init.d/
   install -m 755 files/set_iptables_rules.sh    ${ROOTFS_DIR}/usr/bin/
   chmod +x ${ROOTFS_DIR}/etc/init.d/configure_iptables
@@ -13,11 +13,11 @@ EOF
 
   # NOTE: if there are other applications then add rules here
 if [ "${USE_SSH}" = "1" ]; then
-    echo "Authorize SSH in iptables"
+    log "Authorize SSH in iptables"
     echo "# SSH In/Out" >> ${ROOTFS_DIR}/usr/bin/set_iptables_rules.sh
     echo "iptables -t filter -A INPUT -p tcp --dport 22 -j ACCEPT" >> ${ROOTFS_DIR}/usr/bin/set_iptables_rules.sh
     echo "iptables -t filter -A OUTPUT -p tcp --dport 22 -j ACCEPT" >> ${ROOTFS_DIR}/usr/bin/set_iptables_rules.sh
   fi
 else
-  echo "Firewall is disabled"
+  log "Firewall is disabled"
 fi

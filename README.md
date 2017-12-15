@@ -128,12 +128,6 @@ The following environment variables are supported:
  * `FREE_SPACE_MB` (Default: <int> 400)
  Add a free space in the partition (value in megabyte). If Qemu image is generated it could be usefull to have a lot of free space.
 
-A simple example for building Raspbian:
-
-```bash
-IMG_NAME='Raspbian'
-```
-
 
 ## How the build process works
 

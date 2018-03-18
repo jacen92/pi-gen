@@ -11,4 +11,5 @@ chromium-browser rpi-chromium-mods
 gldriver-test
 fonts-droid-fallback
 fonts-liberation2
+raspberrypi-net-mods raspberrypi-ui-mods
 obconf

@@ -140,6 +140,7 @@ export RPI_USERNAME=${RPI_USERNAME:-"pi"}
 export RPI_USERPASS=${RPI_USERPASS:-"raspberry"}
 export RPI_ROOTPASS=${RPI_ROOTPASS:-"root"}
 export KEYBOARD_LANG=${KEYBOARD_LANG:-"gb"}
+export USE_IPTABLE=${USE_IPTABLE:-0}
 export USE_SSH=${USE_SSH:-0}
 
 export IMG_DATE=${IMG_DATE:-"$(date +%Y-%m-%d)"}

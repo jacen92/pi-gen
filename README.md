@@ -106,6 +106,12 @@ The following environment variables are supported:
    For security SSH server is disabled by default so if you want to activate it set this to `"1"`.  
    If `stage2/01-sys-tweaks/files/authorized_keys` is present then it will be copied in `/root/.ssh/`
 
+ * `USE_IPTABLE` (Default: `"0"`)
+
+   This start the firewall at startup (iptable is always installed).  
+   This forbid all connections except for dns, ping, ntp, apt-get and rpi-update.  
+   You can set all rules in the file `"set_iptables_rules.sh"` from `"/usr/bin/"` which is launch at statup to set iptables.
+
 
 A simple example for building Raspbian:
 
